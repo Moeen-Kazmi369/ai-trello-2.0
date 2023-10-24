@@ -2,6 +2,7 @@ import Modal from '@/components/Modal';
 import './globals.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ChatAIBtn from '@/components/ChatAIBtn';
 
 export const metadata = {
   title: 'AI Trello 2.0',
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className='bg-white-gradient min-h-screen min-w-full'>
         <ToastContainer/>
+        <ChatAIBtn/>
         {children}
         <Modal/>
         </body>

@@ -1,4 +1,3 @@
-import Chatgpt from "@/components/Chatgpt";
 import SearchForm from "@/components/SearchForm";
 import Image from "next/image";
 import React from "react";
@@ -18,7 +17,6 @@ const Header = () => {
         {/* search */}
         <SearchForm />
       </div>
-      <Chatgpt />
     </header>
   );
 };

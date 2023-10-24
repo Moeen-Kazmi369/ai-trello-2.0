@@ -22,6 +22,7 @@ const Board = () => {
     };
     fetchData();
   }, [getboard]);
+  console.log(board)
   const handleDragEnd = (results) => {
     // reording logic
     const { destination, source, type } = results;
