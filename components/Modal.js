@@ -132,7 +132,7 @@ const Modal = () => {
                   <button
                     type={'submit'}
                     disabled={!addTaskInput}
-                    className=" font-medium hover:bg-black hover:text-white rounded-lg border text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    className=" font-medium hover:bg-black disabled:opacity-50 hover:text-white rounded-lg border text-sm px-5 py-2.5 text-center mr-2 mb-2"
                   >
                     Add Task
                   </button>
