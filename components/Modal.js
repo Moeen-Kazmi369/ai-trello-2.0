@@ -5,9 +5,9 @@ import { Fragment, useState } from "react";
 import TaskTypeOptions from "./TaskTypeOptions";
 import { useBoardStore } from "@/store/boardStore";
 import Image from "next/image";
-import { ID } from "appwrite";
-import { storage } from "@/appwrite";
+import { useParams } from "next/navigation";
 const Modal = () => {
+  const params=useParams()
   const { isOpen, closeModal, openModal } = useModalStore();
   const {
     addTaskInput,
@@ -19,8 +19,7 @@ const Modal = () => {
   } = useBoardStore();
   const handleSubmit=async(e)=>{
     e.preventDefault()
-   const res= await addTaskInDB(addTaskInput,addTaskType,image)
-   console.log(res)
+   const res= await addTaskInDB(addTaskInput,addTaskType,image,params.id)
     setaddTaskInput(null)
     setaddImage(null)
     closeModal()
@@ -38,7 +37,7 @@ const Modal = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">

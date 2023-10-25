@@ -10,8 +10,8 @@ const type = [
     color:'bg-red-500',
   },
   {
-    id:'inprogress',
-    name: 'In Progress',
+    id:'doing',
+    name: 'Doing',
     tagline: 'A task that been currently in progress stage',
     color:'bg-yellow-500',
   },

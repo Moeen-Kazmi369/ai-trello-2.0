@@ -11,7 +11,7 @@ const Column = ({ key, id, todos, index }) => {
   const{openModal}=useModalStore()
   const idToColumnText = {
     todo: "To Do",
-    inprogress: "In Progress",
+    doing: "Doing",
     done: "Done",
   };
   return (

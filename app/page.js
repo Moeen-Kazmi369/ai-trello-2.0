@@ -1,11 +1,7 @@
-import Board from "@/components/Board";
-import Header from "@/components/Header";
+import SideContent from "@/components/SideContent";
 
 export default function Home() {
   return (
-    <main>
-      <Header/>
-      <Board/>
-    </main>
+      <SideContent/>
   )
 }

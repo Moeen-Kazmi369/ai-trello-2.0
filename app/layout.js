@@ -3,6 +3,9 @@ import './globals.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ChatAIBtn from '@/components/ChatAIBtn';
+import SideBar from '@/components/SideBar';
+import Header from '@/components/Header';
+import BoardForm from '@/components/BoardForm';
 
 export const metadata = {
   title: 'AI Trello 2.0',
@@ -15,9 +18,14 @@ export default function RootLayout({ children }) {
       <body className='bg-white-gradient min-h-screen min-w-full'>
         <ToastContainer/>
         <ChatAIBtn/>
-        {children}
         <Modal/>
-        </body>
+        <BoardForm/>
+        <Header/>
+        <main className="flex flex-col sm:flex-row gap-8 sm:gap-0 justify-start">
+          <SideBar />
+          {children}
+        </main>
+      </body>
     </html>
   )
 }

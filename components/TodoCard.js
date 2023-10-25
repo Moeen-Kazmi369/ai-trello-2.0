@@ -13,16 +13,26 @@ const TodoCard = ({
   id,
   index,
 }) => {
-  const { deleteTask,board } = useBoardStore();
+  const { deleteTask, board } = useBoardStore();
   const [imageUrl, setImageUrl] = useState();
   useEffect(() => {
     if (todo.image) {
-      const fetchurl = async () => {
-        const res = await getImageUrl(todo.image.bucketId,todo.image.fileId);
-        console.log(res.href)
-        setImageUrl(res.href);
-      };
-      fetchurl();
+      console.log(typeof todo.image === "object");
+      if (!(typeof todo.image === "object")) {
+        const image = JSON.parse(todo.image);
+        const fetchurl = async () => {
+          const res = await getImageUrl(image.bucketId, image.fileId);
+          setImageUrl(res.href);
+        };
+        fetchurl();
+      } else {
+        const image = todo.image;
+        const fetchurl = async () => {
+          const res = await getImageUrl(image.bucketId, image.fileId);
+          setImageUrl(res.href);
+        };
+        fetchurl();
+      }
     }
   }, [board]);
   return (
@@ -33,7 +43,7 @@ const TodoCard = ({
       className="bg-white rounded-xl"
     >
       <div className="flex justify-between items-center px-3 py-2">
-        <p className="text-xl font-medium">{todo.title}</p>
+        <p className="text-xl font-medium capitalize">{todo.title}</p>
         <button>
           <AiFillCloseCircle
             onClick={() => deleteTask(todo, index, id)}

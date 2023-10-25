@@ -7,13 +7,16 @@ export const useBoardStore = create((set, get) => ({
   addTaskInput: "",
   addTaskType: "todo",
   image: "",
+  selectedBoard:null,
+  setSelectedBoard:(val)=>set({selectedBoard:val}),
   setsearchString: (input) => set({ searchString: input }),
   setaddTaskInput: (input) => set({ addTaskInput: input }),
   setaddTaskType: (input) => set({ addTaskType: input }),
   setaddImage: (image) => {
     set({ image: image });
   },
-  addTaskInDB: async (todo, columnId, image) => {
+  addTaskInDB: async (todo, columnId, image,id) => {
+    console.log(id)
     let file=''
     if(image){
       const fileUploaded=await storage.createFile(
@@ -28,7 +31,7 @@ export const useBoardStore = create((set, get) => ({
         })
       }
     }
-    const { $id } = await database.createDocument(
+    const { $id ,board} = await database.createDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID,
       process.env.NEXT_PUBLIC_COLLECTION_ID,
       ID.unique(),
@@ -36,6 +39,7 @@ export const useBoardStore = create((set, get) => ({
         title: todo,
         status: columnId,
       ...(file && {image:file}),
+      board:ID.custom(id)
       }
     );
     const newTodo = {
@@ -44,15 +48,11 @@ export const useBoardStore = create((set, get) => ({
       title: todo,
       status: columnId,
       ...(file && {image:file}),
+      boardId:board.$id,
     };
     const newColumns = new Map(get().board.columns);
     newColumns.get(columnId)?.todos.push(newTodo);
     set({ board: { columns: newColumns } });
-  },
-  getboard: async () => {
-    const board = await getBoardData();
-    set({ board: board });
-    return board;
   },
   updateBoardState: (state) => set({ board: state }),
   updateTodoInDB: async (todo, columnId) => {
