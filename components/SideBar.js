@@ -97,7 +97,7 @@ const SideBar = () => {
                 >
                   <Link href={`/board/${item.id}`}>
                     <h3
-                      className="text-xl font-semibold capitalize cursor-pointer w-full px-5"
+                      className="text-xl font-semibold hover:underline capitalize cursor-pointer w-full px-5"
                       onClick={() => setSelectedBoard(item.id)}
                     >
                       {item.title}
